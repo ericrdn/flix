@@ -1,0 +1,24 @@
+version: '3.0'
+
+networks:
+    rede:
+
+services:
+  api-flix:
+    environment:
+     - "SERVER_MONGO=db-mongo-flix"
+    image: api-flix:v2
+    ports:
+     - "5000:5000"
+    volumes:
+     - d:\Download\GRID\:/data/videos
+    networks:
+     - rede 
+    depends_on:    
+     - db-flix    
+  db-flix:
+    container_name: db-mongo-flix
+    image: db-flix
+    networks:
+     - rede    
+   
